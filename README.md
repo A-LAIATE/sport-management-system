@@ -56,6 +56,13 @@ The devcontainer method will have installed the flake8 extension for vscode. You
 The app requires an environment variable `SECRET_KEY` to be set. On windows this is `set SECRET_KEY=something` on linux `export SECRET_KEY=something`
 Run the app by doing `python main.py` in the terminal - DO NOT use `flask run`
 
+Copy `.env.example` to `.env` and fill values.
+```
+# .env.example
+SECRET_KEY=change_me
+STRIPE_SECRET=sk_test_your_own_key_here
+```
+
 ## Stripe CLI
 We use Stripe webhooks to track various user actions. In order for these to work properly please install the stripe CLI from here:[https://stripe.com/docs/stripe-cli]
 If you are using the devcontainer then this will be done for you. Please follow the instructions in the terminal. They are repeated here for clarity:
