@@ -1,0 +1,22 @@
+{% extends "m_home.html" %}
+{% from "macros.html" import render_field %}
+{% block head %} {{title}} {% endblock %}
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p class="text-danger">{{ danger_message }}</p>
+</div>
+
+<div class="container">
+    <form action="{{url_for('admin.pricing')}}" method="post">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        {{render_field(field, class_="form-control")}}
+        {% endfor %}
+    </form>
+    </div>
+{% endblock %}
+

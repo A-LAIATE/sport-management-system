@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  input[type="email"],
+  input[type="text"],
+  input[type="password"] {
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  input[type="email"]:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #4CAF50;
+  }
+  
+  input {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  input[type="submit"]{
+    color: white;
+    background-color: #4CAF50;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    display: block;
+
+  }
+
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  .links {
+    text-align: center;
+  }
+  
+  .links a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+  }
+  
+  p{
+    color:red;
+  }
+/* all coolrs need to be change*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color : #f2f2f2;
+  }
+  /*signin title*/
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .input-group {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #4CAF50;
+  }
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  .links {
+    text-align: center;
+  }
+  .links a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }

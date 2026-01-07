@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_field %}
+{% block title %} ReAuth {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('auth.static', filename='login.css')}}">
+{% endblock %}
+
+
+
+{% block content %}
+<h1>Create Account</h1>
+<form method="POST" action="{{url_for('auth.reauth')}}">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.password) }}
+    {{ form.submit }}
+</form>
+
+ {% endblock %}

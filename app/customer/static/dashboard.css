@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+/* */
+h3 {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+/* Calendar */
+.calendar {
+    background-color: white;
+    width: 450px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+}
+
+.calendar .date-days {
+    padding: 0px;
+    margin: 0px;
+}
+
+.calendar .date-days li {
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.calendar .date-number {
+    display: flex;
+    padding: 0px;
+    margin: 15px 0 15px 0;
+}
+
+.calendar .date-number li {
+    border-radius: 10%;
+    margin-bottom: 6px;
+}
+
+.calendar .date-number li:hover {
+    cursor: pointer;
+    color: #f2f2f2;
+    background: gray;
+}
+
+.calendar .date-number li.inactive { 
+    color: gray;
+}
+
+.calendar .date-number li.inactive:hover {
+    color: #f2f2f2;
+    background: gray;
+}
+
+.calendar .date-number li.active {
+    color: #f2f2f2;
+    background: #4c87af;
+}
+
+.calendar .date-number li.current {
+    color: #f2f2f2;
+    background: #4CAF50;
+}
+
+.calendar ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.calendar ul li {
+    width: calc(100% / 7);
+}
+
+
+/* CHEVRON */
+
+.bx-chevron-right, .bx-chevron-left {
+    position: relative;
+    color: black;
+}
+
+.bx-chevron-right:hover::before, .bx-chevron-left:hover::before {
+    cursor: pointer;
+    background: gray;
+    color: #f2f2f2;
+}
+
+.bx-chevron-right::before, .bx-chevron-left::before {
+    position: absolute;
+    background: white;
+    transform: translate(-100%, 0%);
+    border-radius: 100%;
+}

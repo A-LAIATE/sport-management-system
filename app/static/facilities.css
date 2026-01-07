@@ -1,0 +1,38 @@
+.c-item{
+    height: 500px;
+}
+
+.c-img {
+   /* height: 90%;*/
+    object-fit: cover;
+    filter: brightness(1);
+
+}
+
+body {
+    background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+  }
+  
+
+  
+  .pricing-header {
+    max-width: 700px;
+  }
+  
+
+  
+  h1 {
+    margin: 0;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+
+
+  button[type="button"]{
+    max-width: 400px;
+
+  }

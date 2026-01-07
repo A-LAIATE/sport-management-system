@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} Session Booking {% endblock %}
+
+{% block content %}
+    <main>
+    <h1>Become a member!</h1>  
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Monthly</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">£35<small class="text-muted fw-light">/mo</small></h1>
+              <a class="w-100 btn btn-lg btn-primary" href="{{url_for('auth.monthly_membership_checkout')}}">Join now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Annual</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">£300<small class="text-muted fw-light">/yr</small></h1>
+              <a class="w-100 btn btn-lg btn-primary" href="{{url_for('auth.annual_membership_checkout')}}">Join now (@25/mo)</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Pay per Session</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">£9.99<small class="text-muted fw-light">/session</small></h1>
+              <p>15% discount when booking 3 or more sessions that occur within 7 days of each other</p>
+              <a class="w-100 btn btn-lg btn-outline-primary" href="{{url_for('customer.booking')}}">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ {% endblock %}

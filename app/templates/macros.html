@@ -1,0 +1,212 @@
+# https://flask.palletsprojects.com/en/1.1.x/patterns/wtforms/#forms-in-templates
+{% macro render_field(field) %}
+{% if field.widget.input_type != 'submit' %}
+<dt>{{ field.label }}
+  {% endif %}
+<dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+  <ul class="list-unstyled">
+    {% for error in field.errors %}
+    <p class="error">Error: {{ error }}
+    <p>
+      {% endfor %}
+  </ul>
+  {% endif %}
+</dd>
+{% endmacro %}
+
+{% macro render_form(form, action) %}
+<div class="container">
+  <form action="{{action}}" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    {{render_field(field, class_="form-control")}}
+    {% endfor %}
+  </form>
+</div>
+{%endmacro%}
+
+
+{% macro render_admin_table(columns, table_items, edit_action, delete_from) %}
+<div class="d-flex m-auto">
+  <table class="table table-striped my-2 justify-content-center">
+    <thead class="h5 fw-bold">
+      <tr>
+        {% for col in columns %}
+        <th scope="row">{{col.replace("_", " ").capitalize()}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for table_item in table_items %}
+      <tr>
+        {% for item in table_item.values() %}
+        <td>{{item}}</td>
+        {% endfor %}
+        <td class="d-grid gap-2 d-flex justify-content-end">
+          <a class="btn btn-success" href="{{url_for(edit_action, id=table_item.id)}}">Edit</a>
+          <a href="{{url_for('admin.delete', table=delete_from, id=table_item.id)}}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{%endmacro%}
+
+{% macro membership_pricing() %}
+<div class="container py-3">
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4">
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+
+
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+
+    </div>
+
+    <div class="p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Membership Plans</h1>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Monthly</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£35<small class="text-muted fw-light">/mo</small></h1>
+            <a class="w-100 btn btn-lg btn-primary" href="#">Join now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Annual</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£300<small class="text-muted fw-light">/yr</small></h1>
+            <a class="w-100 btn btn-lg btn-primary" href="#">Join now (@25/mo)</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Pay per Session</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£9.99<small class="text-muted fw-light">/session</small></h1>
+            <p>15% discount when booking 3 or more sessions that occur within 7 days of each other</p>
+            <a class="w-100 btn btn-lg btn-outline-primary" href="{{url_for('customer.booking')}}">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endmacro%}
+
+
+    {% macro facility_cards() %}
+    <div class="container mt-5">
+      <div class="row g-4 ">
+        <h1 class="display-4 fw-normal">Facilities</h1>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/Pool.jpeg')}}" alt="Swimming Pool" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Swimming Pool</h5>
+              <p class="card-text">Capacity = 30</p>
+              <hr>
+              <h6 class="Activities">Activity</h6>
+              <p class="card-text">
+                General Use <br>
+                Lane Swimming <br>
+                Lessons <br>
+                Team Events (2-hours)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/Gym.jpeg')}}" alt="Gym" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Fitness Room</h5>
+              <p class="card-text">Capacity = 35</p>
+              <hr>
+              <h6 class="Activities">Activity</h6>
+              <p class="card-text">General Use</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/squash.jpeg')}}" alt="Squash Court" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Squash Court(x2)</h5>
+              <p class="card-text">Capacity = 4 per court</p>
+              <hr>
+              <h6 class="Activities">Activity</h6>
+              <p class="card-text">1-hour sessions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/SportsHall.jpeg')}}" alt="Sports Hall" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Sports Hall</h5>
+              <p class="card-text">Capacity = 45</p>
+              <hr>
+              <h6 class="Activities">Activity</h6>
+              <p class="card-text">1-hour sessions<br>Team events (2-hours)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/ClimbingWall.jpeg')}}" alt="Climbing Wall"
+              class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Climbing Wall (10am-5pm)</h5>
+              <p class="card-text">Capacity = 22</p>
+              <hr>
+              <h6 class="Activities">Activity</h6>
+              <p class="card-text">General Use</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <img src="{{url_for('static',filename='images/Studio.jpeg')}}" alt="Studio" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title"> Studio </h5>
+              <p class="card-text"> Capacity = 25 </p>
+              <hr />
+
+              <h6 class="Activities"> Weekly Classes </h6>
+              <p class="card-text">
+                <u>Pilates:</u> Monday 6-7pm<br>
+                <u>Aerobics:</u> Tuesday 10-11am, Thursday 7-8pm, Saturday 10-11am.<br>
+                <u>Yoga:</u> Friday 5-6pm
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {%endmacro%}

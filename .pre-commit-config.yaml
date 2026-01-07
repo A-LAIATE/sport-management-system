@@ -1,0 +1,29 @@
+repos:
+  # Check formatting and syntax, extra args to bring in line with black's rules.
+  - repo: https://github.com/PyCQA/flake8
+    rev: 5.0.4
+    hooks:
+      - id: flake8
+        verbose: true
+        args:
+          - "--extend-ignore=E203,E501, W503"
+          - "--select=C,E,F,W,B,B950"
+          - "--max-line-length=88"
+          - "--statistics"
+  # This checks *only* the formatting, will fail if changes required.
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+  # Run all unit tests on push
+  - repo: local
+    hooks:
+    - id: pytest
+      name: pytest
+      entry: python -m pytest
+      language: system
+      types: [python]
+      stages: [push]
+      pass_filenames: false
+      always_run: true
+  

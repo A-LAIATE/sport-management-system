@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from 'macros.html' import membership_pricing, facility_cards %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='facilities.css')}}" />
+{% endblock%}
+{% block title%} Index {%endblock%}
+
+{% block content %}
+        <!-- Put some stuff here-->
+            <!-- Carousel of Facilities -->
+
+    <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+    
+        <div class="carousel-inner">
+          <div class="carousel-item active c-item">
+            <img src="{{url_for('static',filename='images/Gym.jpeg')}}" class="d-block w-100 c-img img-fluid" alt="...">
+            <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+              <h1 class='display-1 fw-bolder mt-5 ' >The gymCorp Gym</h1>
+              <p>The best gymnasium facilities in the city!</p>
+              <a  href="{{url_for('customer.booking')}}" class="btn btn-primary px-4 py-2 fs-5 mt-5"> Book a Session</a>
+            </div>
+          </div>
+    
+    
+          <div class="carousel-item c-item">
+            <img src="{{url_for('static',filename='images/Pool.jpeg')}}" class="d-block w-100 c-img img-fluid" alt="...">
+            <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+              <h1 class='display-1 fw-bolder mt-5 ' >The gymCorp Swimming Pool</h1>
+              <p>Olympic sized pool at your service!!</p>
+              <a  href="{{url_for('customer.booking')}}" class="btn btn-primary px-4 py-2 fs-5 mt-5"> Book a Session</a>
+            </div>
+          </div>
+    
+          <div class="carousel-item c-item">
+            <img src="{{url_for('static',filename='images/squash.jpeg')}}" class="d-block w-100 c-img img-fluid" alt="...">
+            <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+              <h1 class='display-1 fw-bolder mt-5 ' >The gymCorp Squash Courts</h1>
+              <p>Have the time of your life playing squash at our courts!</p>
+              <a  href="{{url_for('customer.booking')}}" class="btn btn-primary px-4 py-2 fs-5 mt-5"> Book a Session</a>
+            </div>
+          </div>
+    
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div>
+    
+    
+        {{membership_pricing()}}
+        {{facility_cards()}}
+
+{% endblock%}

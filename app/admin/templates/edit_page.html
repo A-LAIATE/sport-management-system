@@ -1,0 +1,14 @@
+{% extends "m_home.html" %}
+{% from "macros.html" import render_form %}
+{% block head %} {{title}} {% endblock %}
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p class="text-danger">{{ danger_message }}</p>
+</div>
+
+{{render_form(form, action)}}
+{% endblock %}

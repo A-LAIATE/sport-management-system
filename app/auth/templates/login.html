@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_field %}
+
+{% block title %} {% endblock %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('auth.static', filename='login.css')}}">
+{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+
+<form method="POST" action="{{url_for('auth.login')}}">
+  <!-- CSRF tag for security --> 
+  {{form.hidden_tag()}}
+  {{ render_field(form.identifier) }}
+  {{ render_field(form.password) }}
+  {{ form.submit }}
+
+  <div class="links">
+    <a href="{{url_for('auth.signup')}}">Create an Account</a>
+  </div>
+</form>
+{% endblock %}

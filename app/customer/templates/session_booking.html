@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} Session Booking {% endblock %}
+
+{% block content %}
+<h1>Book a session</h1>
+<form method="POST" action="{{url_for('customer.booking')}}">
+    {{form.hidden_tag()}}
+    {% for field in form if field.label.text != "CSRF Token" %}
+        {%if field.type == "RadioField"%}
+        {% for choice in field%}
+        {{choice.label}}
+        {{choice}}
+        <br>
+        {%endfor%}
+    {%else%}
+    {{field.label}}
+    {{field}}
+    <br>
+    {%endif%}
+    {%endfor%}
+</form>
+<h2>Available sessions: </h2>
+{% if activities%}
+<h4>{{activities[0]}}</h4>
+<br>
+<form method="post", action="{{url_for('customer.save_session')}}">
+{%for a in activities[1]%}
+{%set outerloop = loop%}
+    <h4>{{a.facility}} - {{a.activity}}</h4>
+    {%for sess in a.sessions%}
+
+    <input type="checkbox" value="{{sess.unique_code()}}"
+     id="{{sess.unique_code()}}" name="{{sess.unique_code()}}">
+     <label for="{{sess.unique_code()}}"> 
+    {{sess.display_start_time()}} to 
+    {{sess.display_end_time()}}
+    </label>
+    <br>
+    {%endfor%}
+    <hr>
+{%endfor%}
+<button type="submit">Book</button>
+</form>
+
+ {%endif%}
+ {% endblock %}

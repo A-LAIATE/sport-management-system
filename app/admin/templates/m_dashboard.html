@@ -1,0 +1,75 @@
+{% extends "m_home.html" %}
+
+{% block styles %}
+    <link href="employee/static/m_dashboard.html" rel="stylesheet">
+    
+{% endblock %}
+
+{% block head %} 
+Dashboard 
+{% endblock %}
+
+{% block content %}
+    <div class="row mb-5">
+        <div class="d-flex justify-content-evenly w-100 p-3">
+            <div class="list-group list-group-horizontal d-flex flex-wrap justify-content-center row-gap-3 column-gap-4">
+
+                <div class="list-group-item d-flex flex-wrap border rounded">
+                    <div class="d-flex flex-wrap flex-grow-1 align-content-between">
+                        <img src="" alt="IMG" class="d-none d-md-flex p-3" width="120" height="120">
+                        <h3 class="m-0 p-2 flex-grow-1 text-center">Members</h3>
+                    </div>
+                    <h3 class="m-0 pb-2 w-100 opacity-75 fw-bold text-center">500</h3>
+                </div>
+
+                <div class="list-group-item d-flex flex-wrap border rounded">
+                    <div class="d-flex flex-wrap flex-grow-1 align-content-between">
+                        <img src="" alt="IMG" class="d-none d-md-flex p-3" width="120" height="120">
+                        <h3 class="m-0 p-2 flex-grow-1 text-center">Trainers</h3>
+                    </div>
+                    <h3 class="m-0 pb-2 w-100 opacity-75 fw-bold text-center">25</h3>
+                </div>
+
+                <div class="list-group-item d-flex flex-wrap border rounded">
+                    <div class="d-flex flex-wrap flex-grow-1 align-content-between">
+                        <img src="" alt="IMG" class="d-none d-md-flex p-3" width="120" height="120">
+                        <h3 class="m-0 p-2 flex-grow-1 text-center">Sales</h3>
+                    </div>
+                    <h3 class="m-0 pb-2 w-100 opacity-75 fw-bold text-center">$500,000</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul class="nav nav-pills" id="graph-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="members-tab" data-bs-toggle="tab" data-bs-target="#members" role="tab" aria-controls="members" aria-selected="true" href="#members">Members</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="trainers-tab" data-bs-toggle="tab" data-bs-target="#trainers" type="button" role="tab" aria-controls="trainers" aria-selected="false">Trainers</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="sales-tab" data-bs-toggle="tab" data-bs-target="#sales" type="button" role="tab" aria-controls="sales" aria-selected="false">Sales</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="members"class="tab-pane fade show active" role="tabpanel" aria-labelledby="members-tab">
+                <h3>Members</h3>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div id="trainers" class="tab-pane fade" role="tabpanel" aria-labelledby="trainers-tab">
+                <h3>Trainers</h3>
+                <canvas id="myChart2"></canvas>
+            </div>
+            <div id="sales" class="tab-pane fade" role="tabpanel" aria-labelledby="sales-tab">
+                <h3>Sales</h3>
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="module" src="{{url_for('admin.static',filename='stats.js')}}"></script>
+    </div>
+    
+
+{% endblock %}

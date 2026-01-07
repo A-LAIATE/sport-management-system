@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} Manage Sessions {% endblock %}
+
+{% block content %}
+<h1> Manage Sessions</h1>
+{% if sessions %}
+ <div>
+    <ul>
+        {% for session, is_expired in sessions %}
+        <h4>{{session.display_date()}}</h4>
+        <li>
+             {{session.display_facility()}}
+             {{session.display_session_type()}}
+             {{session.display_start_time()}}-{{session.display_end_time()}}
+
+             {% if current_user.role == Roles.EMPLOYEE %}
+               {% if is_expired%}
+               <a href="{{url_for('employee.booking')}}">Book again?</a>
+               {% else %}
+               <a href="{{url_for('employee.delete_session', id = session.session_id)}}">Delete</a>
+               {% endif %}
+            {% else %}
+               {% if is_expired%}
+               <a href="{{url_for('customer.booking')}}">Book again?</a>
+               {% else %}
+               <a href="{{url_for('customer.delete_session', id = session.session_id)}}">Delete</a>
+               {% endif %}
+             {% endif %}
+
+
+        </li>
+        {% endfor %}
+    </ul>
+ </div>
+ {% else %}
+ <div>
+    <p>You haven't booked any sessions yet.</p>
+ </div>
+ {% endif %}
+ {% endblock %}

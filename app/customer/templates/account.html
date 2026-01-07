@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{url_for('customer.static', filename='account.css')}}" />
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <P></P>
+  <h1>Account</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <img src="P_images/blank_photo.png" alt="Profile picture">
+      <p></p>
+			<a type="button" href="#" class="btn btn-primary mr-3" role="button">my booking</a>  <!-- booking page needs to add in here -->
+			<a type="button" href="update_profile.html" class="btn btn-secondary mr-3" role="button">update my profile</a>
+      </div>
+    </div>  
+  </form>
+{% endblock %}

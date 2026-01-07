@@ -1,0 +1,26 @@
+{% extends "m_home.html" %}
+{% from "macros.html" import render_admin_table %}
+
+{% block head %} {{title}} {% endblock %}
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+{% if add_action %}
+<div class="d-flex mt-4 justify-content-end">
+    <a class="btn btn-primary" href="{{url_for(add_action)}}">Add</a>
+  </div>
+{%endif%}
+
+{% if message %}
+{{message}}
+{%endif%}
+
+{% if columns %}
+{{render_admin_table(columns, data, edit_action, delete_from)}}
+{%else%}
+<h3>No data to show.</h3>
+{%endif%}
+
+{% endblock %}

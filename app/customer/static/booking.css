@@ -1,0 +1,18 @@
+.day-inactive:hover{
+    background-color: gray;
+    border-radius: 10%;
+
+}
+.day-active:hover{
+    background-color: lime;
+    border-radius: 10%;
+    cursor: pointer;
+}
+.day-active:active{
+    filter: brightness(50%);
+}
+
+.calandar{
+    border: 2px solid black;
+    border-radius: 5%;
+}

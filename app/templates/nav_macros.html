@@ -1,0 +1,160 @@
+{% macro customer_nav() %}
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"> <!-- colore navbar-->
+  <div class="container-fluid">
+
+    <!-- logo/brand lift -->
+    <a class="navbar-brand" href="{{url_for('main.index')}}">
+      <img src="{{url_for('static',filename='the_GymCorp_group.png')}}" width="60" height="40">
+      The GymCorp Group
+    </a>
+
+    <!-- navbar-toggler and colores -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+        
+    <!-- navigation options (Home-facilities-Membership plans) -->    
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url_for('main.index')}}">Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.facilities')}}">Facilities</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('customer.membership')}}">Become a member</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('customer.booking')}}">Book a Session</a>
+        </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <!-- If a user is logged in, show number of items in basket --> 
+            <a class="nav-link" href="{{url_for('customer.checkout')}}">Basket
+              <span class="badge rounded-pill">
+              {{session["booked_sessions"]|length}}
+              <span class="visually-hidden">Items in basket</span>
+            </span></a>
+          </li>
+          
+      <!-- If a user is logged in, show account options and signout in dropdown -->    
+      {% if current_user.is_authenticated%}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{current_user.username}}
+        </a>
+        <!-- add QRcode --> 
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href='{{url_for("customer.manage_sessions")}}'>My Sessions</a></li>
+          <li><a class="dropdown-item" href='{{url_for("customer.settings")}}'>Settings</a></li>
+          <li><hr></li>
+          <li><a class="dropdown-item" href='{{url_for("auth.logout")}}'>Logout</a></li>
+        </ul>
+      </li>
+    <!-- If user not logged in then show sign up and log in options --> 
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <!-- add QRcode --> 
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href='{{url_for("auth.login")}}'>Login</a></li>
+          <li><hr></li>
+          <li><a class="dropdown-item" href='{{url_for("auth.signup")}}'>Sign Up</a></li>
+        </ul>
+      </li>
+      {% endif %}
+
+
+    </div>
+
+  </nav>
+{% endmacro %}
+
+
+{% macro employee_nav() %}
+<nav class="navbar navbar-light navbar-expand-lg bg-warning" data-bs-theme="light"> <!-- colore navbar-->
+    <div class="container-fluid">
+
+      <!-- logo/brand lift -->
+      <a class="navbar-brand" href="{{url_for('main.index')}}">
+        <img src="{{url_for('static',filename='the_GymCorp_group.png')}}" width="60" height="40">
+        The GymCorp Group
+      </a>
+
+      <!-- navbar-toggler and colores -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+          
+      <!-- navigation options (Home-facilities-Membership plans) -->    
+
+          {% if session["customer_name"] %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('employee.end_session')}}">End Session</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('employee.manage_sessions')}}">Manage Sessions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('employee.settings')}}">User Info</a>
+          </li>
+          
+          <li class="navbar-text">
+            Booking as: {{session["customer_name"]}}
+          </li>
+          {% endif %}
+
+
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+          <a class="nav-link" href="{{url_for('employee.basket')}}">Customer's Basket
+            <span class="badge rounded-pill">
+            {{session["booked_sessions"]|length}}
+            <span class="visually-hidden">Items in Basket</span>
+          </span></a>
+          
+      <!-- If a user is logged in, show account options and signout in dropdown -->    
+      {% if current_user.is_authenticated%}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{current_user.username}}
+        </a>
+        <!-- add QRcode --> 
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href='{{url_for("auth.logout")}}'>Logout</a></li>
+        </ul>
+      </li>
+    <!-- If user not logged in then show log in options --> 
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href='{{url_for("auth.login")}}'>Login</a></li>
+        </ul>
+      </li>
+      {% endif %}
+
+
+    </div>
+
+  </nav>
+{% endmacro %}
